@@ -1,0 +1,16 @@
+@import '~@angular/material/prebuilt-themes/purple-green.css';
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@include mat-core();
+
+td {
+	width: 40px;
+	height: 40px;
+}
+
+.size-input {
+	max-width: 42px;
+}
+
+.cell-size-input {
+	max-width: 60px;
+}
