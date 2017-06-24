@@ -1,12 +1,17 @@
 <md-card>
+	<md-card-header class="no-card-subtitle">
+		<md-input-container class="name-input">
+			<input mdInput type="text" placeholder="Name" [(ngModel)]="name" maxlength="32" />
+		</md-input-container>
+	</md-card-header>
 	<md-card-content>
 		Selected Color:
 		<input type="color" (change)="colorSelected()"  [(ngModel)]="selectedColor" style="width:60px;">
 		<br>
 		Recent Colors:
 		<table>
-			<tr>
-				<td *ngFor="let recentColor of recentColors" [style.background]="recentColor" (click)="recentSelected(recentColor)"></td>
+			<tr class="recent-color-tr">
+				<td *ngFor="let recentColor of recentColors" class="recent-color-td" [style.background]="recentColor" (click)="recentSelected(recentColor)"></td>
 			</tr>
 		</table>
 		<br>
@@ -19,6 +24,7 @@
 		<md-input-container class="size-input">
 			<input mdInput type="number" placeholder="Height" min="1" [(ngModel)]="height" (input)="heightChange()" />
 		</md-input-container>
+		<button md-button (click)="savePattern()">Save</button>
 	<!-- It might be a good idea to use a material 2 table once one exists -->
 		<table>
         	<tr *ngFor="let cellRow of cellGrid">

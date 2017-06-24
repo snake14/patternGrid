@@ -1,8 +1,9 @@
 const knex = require('knex')(require('./knexfile'))
 module.exports = {
-  createGrid ({ grid, recent_colors, cell_size, grid_width, grid_height }) {
-    console.log(`Add grid with cell size ${cell_size}, width ${grid_width}, and height ${grid_height}`)
+  createGrid ({ name, grid, recent_colors, cell_size, grid_width, grid_height }) {
+    console.log(`Add grid with name ${name}, cell size ${cell_size}, width ${grid_width}, and height ${grid_height}`)
     return knex('pattern_grid').insert({
+    	name,
     	grid, 
     	recent_colors, 
     	cell_size, 

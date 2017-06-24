@@ -12,7 +12,7 @@ export class PatternGridService {
         let url = "/api/patterngrids";
         return this.http.get(url)
             .map(res => res.json())
-            .catch(this.handleError);
+            .catch(this.processError);
     }
 
     // Get a pattern grid by ID
@@ -20,28 +20,20 @@ export class PatternGridService {
         let url = "/api/patterngrid/" + patternID;
         return this.http.get(url)
             .map(res => res.json())
-            .catch(this.handleError);
+            .catch(this.processError);
     }
 
     // Post a new pattern grid
-    postVendor(patterngrid: any) {
+    postPattern(patterngrid: any) {
         let url = "/api/patterngrid";
         return this.http.post(url, patterngrid)
             .map(res => res.json())
-            .catch(this.handleError);
+            .catch(this.processError);
     }
-
-    //    putVendor(updatedVendorConfig) {
-    //        let url = this.custId + "/vendoraccount/" + updatedVendorConfig.pvAccountConfigID;
-    //
-    //        return this.http.put(url, updatedVendorConfig)
-    //            .map(res => res.json())
-    //            .catch(this.handleError);
-    //    }
 
     // Delete pattern grid from database
 
-    private handleError(error: any) {
-        return Observable.throw(JSON.stringify(error));
+    private processError(error: any) {
+        return Observable.throw(error.json());
     }
 }

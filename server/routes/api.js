@@ -27,6 +27,7 @@ router.get('/patterngrid/:patternId', (req, res) => {
 router.post('/patterngrid', (req, res) => {
 	store
 		.createGrid({
+			name: req.body.name,
 			grid: req.body.grid,
 			recent_colors: req.body.recent_colors,
 			cell_size: req.body.cell_size,

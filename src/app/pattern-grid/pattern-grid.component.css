@@ -2,9 +2,18 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @include mat-core();
 
-td {
+.recent-color-tr {
+	height: 40px;
+}
+
+
+.recent-color-td {
 	width: 40px;
 	height: 40px;
+}
+
+.name-input {
+	width: 250px;
 }
 
 .size-input {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PatternGridService } from '../pattern-grid.service';
 
 @Component({
     selector: 'app-pattern-grid',
@@ -19,11 +20,12 @@ export class PatternGridComponent implements OnInit {
 
     //Constructor
     constructor(
+        private patternService: PatternGridService,
         private route: ActivatedRoute
     ) { }
 
     ngOnInit() {
-        this.recentColors.push(this.selectedColor);
+        //        this.recentColors.push(this.selectedColor);
         this.patternID = this.route.snapshot.params['patternID'];
         if (this.patternID) {
             // Get the patternGrid from database and populate the values
@@ -89,6 +91,20 @@ export class PatternGridComponent implements OnInit {
                 this.cellGrid.pop();
             }
         }
+    }
+
+    savePattern() {
+        this.patternService.postPattern(
+            {
+                name: this.name,
+                grid: JSON.stringify(this.cellGrid),
+                recent_colors: JSON.stringify(this.recentColors),
+                cell_size: this.cellSize,
+                grid_width: this.width,
+                grid_height: this.height
+            }
+        );
+        // TODO - Subscribe to result and perform appropriate action
     }
 }
 
