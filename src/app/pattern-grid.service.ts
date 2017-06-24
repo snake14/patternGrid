@@ -27,7 +27,7 @@ export class PatternGridService {
     postPattern(patterngrid: any) {
         let url = "/api/patterngrid";
         return this.http.post(url, patterngrid)
-            .map(res => res.json())
+            .map(res => res)
             .catch(this.processError);
     }
 

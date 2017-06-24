@@ -21,6 +21,7 @@ export class PatternGridComponent implements OnInit {
     //Constructor
     constructor(
         private patternService: PatternGridService,
+        private router: Router,
         private route: ActivatedRoute
     ) { }
 
@@ -29,6 +30,7 @@ export class PatternGridComponent implements OnInit {
         this.patternID = this.route.snapshot.params['patternID'];
         if (this.patternID) {
             // Get the patternGrid from database and populate the values
+            this.getPattern();
         } else {
             // Since this is a new patternGrid, create an empty grid
             for (var i = 0; i < this.height; i++) {
@@ -93,6 +95,22 @@ export class PatternGridComponent implements OnInit {
         }
     }
 
+    getPattern() {
+        this.patternService.getPatternGrid(this.patternID.toString())
+            .subscribe(patternGrid => {
+                this.name = patternGrid.name;
+                this.recentColors = patternGrid.recent_colors ? JSON.parse(patternGrid.recent_colors) : [];
+                if (this.recentColors.length > 0) {
+                    this.selectedColor = this.recentColors[0];
+                }
+                this.cellSize = patternGrid.cell_size;
+                this.width = patternGrid.grid_width;
+                this.height = patternGrid.grid_height;
+                this.cellGrid = patternGrid.grid ? JSON.parse(patternGrid.grid) : [];
+            }
+            )
+    }
+
     savePattern() {
         this.patternService.postPattern(
             {
@@ -103,7 +121,9 @@ export class PatternGridComponent implements OnInit {
                 grid_width: this.width,
                 grid_height: this.height
             }
-        );
+        ).subscribe(result => {
+            this.router.navigateByUrl('')
+        });
         // TODO - Subscribe to result and perform appropriate action
     }
 }

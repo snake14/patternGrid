@@ -14,7 +14,7 @@ module.exports = {
   
   getGrid (id) {
 	  console.log(`Get grid ${id}`)
-	  return knex('pattern_grid').where('id', id).then(function(data) {
+	  return knex('pattern_grid').where('id', id).first().then(function(data) {
 		  return data;
 	  });
   },
