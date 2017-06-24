@@ -4,11 +4,11 @@ const store = require('../../store');
 
 /* GET api listing. */
 router.get('/', (req, res) => {
-  res.send('api works');
+  res.sendStatus(404);
 });
 
 /* GET pattern grid listing. */
-router.get('/savedpatterns', (req, res) => {
+router.get('/patterngrids', (req, res) => {
 	store.getGrids()
 	.then(function(data) {
     	res.send(data);
@@ -16,7 +16,7 @@ router.get('/savedpatterns', (req, res) => {
 });
 
 /* GET pattern grid by ID. */
-router.get('/savedpattern/:patternId', (req, res) => {
+router.get('/patterngrid/:patternId', (req, res) => {
 	store.getGrid(req.params.patternId)
 	.then(function(data) {
     	res.send(data);
@@ -24,7 +24,7 @@ router.get('/savedpattern/:patternId', (req, res) => {
 });
 
 /* POST a new pattern grid. */
-router.post('/gridpattern', (req, res) => {
+router.post('/patterngrid', (req, res) => {
 	store
 		.createGrid({
 			grid: req.body.grid,

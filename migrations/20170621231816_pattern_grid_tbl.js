@@ -1,6 +1,7 @@
 exports.up = function(knex, Promise) {
 	return knex.schema.createTable('pattern_grid', function(t) {
 		t.increments('id').primary()
+		t.string('name').notNullable()
 		t.string('grid').notNullable()
 		t.string('recent_colors')
 		t.string('cell_size').notNullable()

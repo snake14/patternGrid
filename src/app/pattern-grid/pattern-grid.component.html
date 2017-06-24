@@ -1,0 +1,36 @@
+<md-card>
+	<md-card-content>
+		Selected Color:
+		<input type="color" (change)="colorSelected()"  [(ngModel)]="selectedColor" style="width:60px;">
+		<br>
+		Recent Colors:
+		<table>
+			<tr>
+				<td *ngFor="let recentColor of recentColors" [style.background]="recentColor" (click)="recentSelected(recentColor)"></td>
+			</tr>
+		</table>
+		<br>
+		<md-input-container class="cell-size-input">
+			<input mdInput type="number" placeholder="Cell Size" min="1" [(ngModel)]="cellSize" />
+		</md-input-container>
+		<md-input-container class="size-input">
+			<input mdInput type="number" placeholder="Width" min="1" [(ngModel)]="width" (input)="widthChange()" />
+		</md-input-container>
+		<md-input-container class="size-input">
+			<input mdInput type="number" placeholder="Height" min="1" [(ngModel)]="height" (input)="heightChange()" />
+		</md-input-container>
+	<!-- It might be a good idea to use a material 2 table once one exists -->
+		<table>
+        	<tr *ngFor="let cellRow of cellGrid">
+        		<td 
+        			*ngFor="let cell of cellRow" 
+        			[style.width]="cellSize + 'px'" 
+        			[style.height]="cellSize + 'px'" 
+        			[style.background]="cell.selected ? cell.color : '#ffffff'" 
+        			(click)="selectCell(cell)"
+        		>
+        		</td>
+        	</tr>
+        </table>
+    </md-card-content>
+</md-card>
