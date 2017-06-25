@@ -112,19 +112,38 @@ export class PatternGridComponent implements OnInit {
     }
 
     savePattern() {
-        this.patternService.postPattern(
-            {
-                name: this.name,
-                grid: JSON.stringify(this.cellGrid),
-                recent_colors: JSON.stringify(this.recentColors),
-                cell_size: this.cellSize,
-                grid_width: this.width,
-                grid_height: this.height
-            }
-        ).subscribe(result => {
-            this.router.navigateByUrl('')
-        });
-        // TODO - Subscribe to result and perform appropriate action
+        if (this.patternID) {
+            // Update existing pattern grid
+            this.patternService.putPatternGrid(
+                {
+                    id: this.patternID,
+                    name: this.name,
+                    grid: JSON.stringify(this.cellGrid),
+                    recent_colors: JSON.stringify(this.recentColors),
+                    cell_size: this.cellSize,
+                    grid_width: this.width,
+                    grid_height: this.height
+                }
+            ).subscribe(result => {
+                this.router.navigateByUrl('')
+                // TODO - Notify user if there is some kind of error
+            });
+        } else {
+            // Save new pattern grid
+            this.patternService.postPatternGrid(
+                {
+                    name: this.name,
+                    grid: JSON.stringify(this.cellGrid),
+                    recent_colors: JSON.stringify(this.recentColors),
+                    cell_size: this.cellSize,
+                    grid_width: this.width,
+                    grid_height: this.height
+                }
+            ).subscribe(result => {
+                this.router.navigateByUrl('')
+                // TODO - Notify user if there is some kind of error
+            });
+        }
     }
 }
 

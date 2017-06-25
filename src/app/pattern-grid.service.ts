@@ -24,14 +24,29 @@ export class PatternGridService {
     }
 
     // Post a new pattern grid
-    postPattern(patterngrid: any) {
+    postPatternGrid(patterngrid: any) {
         let url = "/api/patterngrid";
         return this.http.post(url, patterngrid)
             .map(res => res)
             .catch(this.processError);
     }
 
-    // Delete pattern grid from database
+    // Update a pattern grid
+    putPatternGrid(patterngrid: any) {
+        let url = "/api/patterngrid/" + patterngrid.id;
+        return this.http.put(url, patterngrid)
+            .map(res => res)
+            .catch(this.processError);
+    }
+
+    // Delete pattern grid by ID
+    deletePatternGrid(patternID: string) {
+        console.log('In Service delete method...' + patternID)
+        let url = "/api/patterngrid/" + patternID;
+        return this.http.delete(url)
+            .map(res => res)
+            .catch(this.processError);
+    }
 
     private processError(error: any) {
         return Observable.throw(error.json());

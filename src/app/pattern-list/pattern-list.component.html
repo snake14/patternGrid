@@ -8,11 +8,22 @@
 				<th class="id">ID</th>
 				<th>Name</th>
 				<th>Dimensions</th>
+				<th></th>
 			</tr>
 			<tr *ngFor="let pattern of allPatterns">
 				<td class="id">{{pattern.id}}</td>
 				<td><a (click)="selectPattern(pattern.id)">{{pattern.name}}</a></td>
 				<td>{{pattern.grid_width}} x {{pattern.grid_height}}</td>
+				<td *ngIf="!showDeactivated">
+                	<button md-icon-button [mdMenuTriggerFor]="patternMenu">
+                		<md-icon>more_vert</md-icon>
+                	</button>
+                	<md-menu #patternMenu="mdMenu">
+                		<button md-menu-item (click)="deletePattern(pattern.id)">
+                			<span>Delete</span>
+                		</button>
+                	</md-menu>
+                </td>
 			</tr>
 		</table>
 		<div *ngIf="!allPatterns || allPatterns.length == 0">No patterns to display. Please create a new one...</div>

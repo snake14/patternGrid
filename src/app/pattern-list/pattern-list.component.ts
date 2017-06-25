@@ -21,4 +21,8 @@ export class PatternListComponent implements OnInit {
     selectPattern(patternID) {
         this.router.navigateByUrl('/patterngrid/' + patternID)
     }
+
+    deletePattern(patternID) {
+        this.patternService.deletePatternGrid(patternID);
+    }
 }
