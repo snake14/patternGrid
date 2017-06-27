@@ -54,7 +54,6 @@ router.put('/patterngrid/:patternId', (req, res) => {
 
 /* DELETE pattern grid by ID. */
 router.delete('/patterngrid/:patternId', (req, res) => {
-	console.log('In API delete method...')
 	store.deleteGrid(req.params.patternId)
 	.then(() => res.sendStatus(200));
 });

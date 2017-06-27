@@ -14,8 +14,12 @@ export class PatternListComponent implements OnInit {
     constructor(private patternService: PatternGridService, private router: Router) { }
 
     ngOnInit() {
+        this.getAllPatternGrids();
+    }
+
+    getAllPatternGrids() {
         this.patternService.getPatternGrids()
-            .subscribe(allPatterns => { this.allPatterns = allPatterns; })
+            .subscribe(allPatterns => { this.allPatterns = allPatterns; });
     }
 
     selectPattern(patternID) {
@@ -23,6 +27,10 @@ export class PatternListComponent implements OnInit {
     }
 
     deletePattern(patternID) {
-        this.patternService.deletePatternGrid(patternID);
+        this.patternService.deletePatternGrid(patternID)
+            .subscribe(result => {
+                this.getAllPatternGrids();
+                // TODO - Notify user if there is some kind of error
+            });
     }
 }

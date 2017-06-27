@@ -40,8 +40,7 @@ export class PatternGridService {
     }
 
     // Delete pattern grid by ID
-    deletePatternGrid(patternID: string) {
-        console.log('In Service delete method...' + patternID)
+    deletePatternGrid(patternID) {
         let url = "/api/patterngrid/" + patternID;
         return this.http.delete(url)
             .map(res => res)

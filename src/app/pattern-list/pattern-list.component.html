@@ -15,10 +15,10 @@
 				<td><a (click)="selectPattern(pattern.id)">{{pattern.name}}</a></td>
 				<td>{{pattern.grid_width}} x {{pattern.grid_height}}</td>
 				<td *ngIf="!showDeactivated">
-                	<button md-icon-button [mdMenuTriggerFor]="patternMenu">
+                	<button md-icon-button [mdMenuTriggerFor]="menu">
                 		<md-icon>more_vert</md-icon>
                 	</button>
-                	<md-menu #patternMenu="mdMenu">
+                	<md-menu #menu="mdMenu">
                 		<button md-menu-item (click)="deletePattern(pattern.id)">
                 			<span>Delete</span>
                 		</button>
