@@ -1,10 +1,10 @@
 # PatternGrid
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0.
+This project was created to provide a way to map out knitting patterns. It uses an Angular frontend, Node.js RESTful API, and a MySQL database.
 
-## Development server
+## Development
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng build --watch` from the root of the project in order to compile and watch for changes in the Angular code. Run `node server.js` to serve the node and angular code. Navigate to `http://localhost:3000`. Any changes to the Angular code will only require refreshing the browser once the build has completed, but changes to the node code will require stopping the terminal and running `node server.js` for the changes to take effect.
 
 ## Code scaffolding
 
@@ -21,7 +21,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+Before running the tests make sure you are serving the app via `node server.js`.
 
 ## Further help
 
